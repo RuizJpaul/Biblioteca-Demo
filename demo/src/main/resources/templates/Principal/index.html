@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Biblioteca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="w-[100%] h-[10vh] bg-yellow-400 text-white p-4 shadow">
+        <h1 class="text-2xl font-bold">Panel de Biblioteca</h1>
+    </header>
+
+    <div class="w-[100%] h-[90vh] flex">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white p-4 shadow w-[20%] h-[100%]">
+            <nav class="space-y-4">
+                <a href="#" class="block text-blue-600 font-semibold">Inicio</a>
+                <a href="#" class="block hover:text-blue-600">Libros</a>
+                <a href="#" class="block hover:text-blue-600">Usuarios</a>
+                <a href="#" class="block hover:text-blue-600">Préstamos</a>
+                <a href="#" class="block hover:text-blue-600">Reportes</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="flex-col p-6 w-[100%]">
+            <div>
+                <div>
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold">Listado de Libros</h2>
+                <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700">Agregar Libro</button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded shadow">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-700">
+                            <th class="py-3 px-4 text-left">ID</th>
+                            <th class="py-3 px-4 text-left">Título</th>
+                            <th class="py-3 px-4 text-left">Autor</th>
+                            <th class="py-3 px-4 text-left">Año</th>
+                            <th class="py-3 px-4 text-left">Estado</th>
+                            <th class="py-3 px-4 text-left">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t">
+                            <td class="py-3 px-4">1</td>
+                            <td class="py-3 px-4">Cien años de soledad</td>
+                            <td class="py-3 px-4">Gabriel García Márquez</td>
+                            <td class="py-3 px-4">1967</td>
+                            <td class="py-3 px-4"><span class="bg-green-200 text-green-800 px-2 py-1 rounded">Disponible</span></td>
+                            <td class="py-3 px-4 space-x-2">
+                                <button class="bg-blue-700 text-white px-2 py-1 rounded">Editar</button>
+                                <button class="bg-blue-700 text-white px-2 py-1 rounded">Eliminar</button>
+                            </td>
+                        </tr>
+                        <!-- Puedes duplicar filas para más libros -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
