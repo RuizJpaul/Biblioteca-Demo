@@ -35,7 +35,7 @@
             <div class="w-full h-[90%] py-4 pr-0 pl-4 flex flex-wrap gap-[5%] overflow-y-auto">
                 <div class="w-[20%] h-[80%] flex flex-col justify-center bg-gray-200 hover:bg-gray-300 hover:scale-105 transition-all duration-300" th:each="item : ${listalibros}">
                     <div class="w-[100%] h-[80%] flex justify-center items-center">
-                        <img class="h-[90%]" src="https://cdn.venngage.com/template/thumbnail/small/2e59bad6-fc8e-4f86-9802-4b83f70b3f88.webp" alt="Libro">
+                        <img class="h-[90%]" th:src="${item.img}" alt="Libro">
                     </div>  
                     <div class="w-[100%] h-[20%]">
                         <p class="text-center" th:text="${item.titulo}"></p>

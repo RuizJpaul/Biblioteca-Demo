@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,7 +23,8 @@ public class Libro implements Serializable{
     private String titulo;
     @Column(name="anioLibro")
     private String anio;
-    @Column(name="descLibro")
+    @Lob
+    @Column(columnDefinition="TEXT" ,name="descLibro")
     private String desc;
     @Column(name="editorialLibro")
     private String editorial;
