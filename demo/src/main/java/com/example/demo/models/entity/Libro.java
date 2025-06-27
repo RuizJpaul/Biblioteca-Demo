@@ -31,46 +31,52 @@ public class Libro implements Serializable{
     @Column(name="imgLibro")
     private String img;
 
-    public Long getIdLibro(){
+    public Long getId(){
         return id;
     }
-    public void setIdLibro(Long id){
+    public void setId(Long id){
         this.id = id;
     }
-    public String getIsbnLibro(){
+    public String getIsbn(){
         return isbn;
     }
-    public void setIsbnLibro(String isbn){
+    public void setIsbn(String isbn){
         this.isbn = isbn;
     }
-    public String getTituloLibro(){
+    public String getTitulo(){
         return titulo;
     }    
-    public void setTituloLibro(String titulo){
+    public void setTitulo(String titulo){
         this.titulo = titulo;
     }
-    public String getAnioLibro(){
+    public String getAnio(){
         return anio;
     }
-    public void setAnioLibro(String anio){
+    public void setAnio(String anio){
         this.anio = anio;
     }
-    public String getDescLibro(){
+    public String getDesc(){
         return desc;
     }
-    public void setDescLibro(String desc){
+    public void setDesc(String desc){
         this.desc = desc;
     }
-    public String getAutorLibro(){
+    public String getEditorial(){
+        return editorial;
+    }
+    public void setEditorial(String editorial){
+        this.editorial = editorial;
+    }
+    public String getAutor(){
         return autor;
     }
-    public void setAutorLibro(String autor){
+    public void setAutor(String autor){
         this.autor = autor;
     }
-    public String getImgLibro(){
+    public String getImg(){
         return img;
     }
-    public void setImgLibro(String img){
+    public void setImg(String img){
         this.img = img;
     }
 }
