@@ -12,8 +12,6 @@ import com.example.demo.models.entity.Libro;
 import com.example.demo.models.service.ILibroService;
 
 
-
-
 @Controller
 @RequestMapping("/libros")
 public class librosController {
@@ -29,10 +27,10 @@ public class librosController {
         return "Libros/index"; 
     }
 
-    @GetMapping("/administrar")
+    @GetMapping("/agregar")
     public String mostrarAdministrar(Model model) {
         model.addAttribute("libro", new Libro());
-        return "Libros/administrarLibros";
+        return "Libros/agregarLibros";
     }
 
     @PostMapping("/formulario")

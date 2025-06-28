@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Biblioteca</title>
+    <title>Biblioteca UPN</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
 
     <!-- Header -->
     <header class="w-[100%] h-[10vh] bg-yellow-400 text-white p-4 shadow">
-        <h1 class="text-2xl font-bold">Panel de Biblioteca</h1>
+        <h1 class="text-2xl font-bold">Panel de Biblioteca  |   Agregar Libro</h1>
     </header>
 
     <div class="w-[100%] h-[90vh] flex">
@@ -32,31 +32,31 @@
                     <form th:action="@{/libros/formulario}" th:object="${libro}" method="post" novalidate class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div >
                             <label class="block text-sm font-medium text-gray-700 mb-1">Titulo del libro:</label>
-                            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{titulo}" type="text" placeholder="Ingrese el titulo" required/>
+                            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{titulo}" type="text" placeholder="Ingrese el titulo" required/>
                         </div>
                         <div >
                             <label class="block text-sm font-medium text-gray-700 mb-1">Ingrese el ISBN</label>
-                            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{isbn}" type="text" placeholder="Ingrese el ISBN" required/>
+                            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{isbn}" type="text" placeholder="Ingrese el ISBN" required/>
                         </div>
                         <div >
                             <label class="block text-sm font-medium text-gray-700 mb-1">Ingrese el año</label>
-                            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{anio}" type="text" placeholder="Ingrese el año" required/>
+                            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{anio}" type="text" placeholder="Ingrese el año" required/>
                         </div>                                   
                         <div >
                             <label class="block text-sm font-medium text-gray-700 mb-1">Ingrese el autor</label>
-                            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{autor}" type="text" placeholder="Ingrese el autor" required/>
+                            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{autor}" type="text" placeholder="Ingrese el autor" required/>
                         </div>
                         <div >
                             <label class="block text-sm font-medium text-gray-700 mb-1">Ingrese la editorial</label>
-                            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{editorial}" type="text" placeholder="Ingrese la editorial" required/>
+                            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{editorial}" type="text" placeholder="Ingrese la editorial" required/>
                         </div>
                         <div >
                             <label class="block text-sm font-medium text-gray-700 mb-1">Ingrese el link de la imagen</label>
-                            <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{img}" type="text" placeholder="Ingrese el link" required/>
+                            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" th:field="*{img}" type="text" placeholder="Ingrese el link" required/>
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
-                            <textarea placeholder="Ingrese una descripción del libro" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" th:field="*{desc}"></textarea>
+                            <textarea placeholder="Ingrese una descripción del libro" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" th:field="*{desc}"></textarea>
                         </div>                        
                         <div class="md:col-span-2 flex justify-center">
                             <button type="submit" class="bg-gray-500 text-white px-6 py-2 rounded-xl hover:bg-gray-600 transition">

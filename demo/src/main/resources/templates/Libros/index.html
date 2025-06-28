@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Biblioteca</title>
+    <title>Biblioteca UPN</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
@@ -29,11 +29,16 @@
         <main class="flex-col p-6 w-[100%] h-[100%]">
             <div class="w-[100%] h-[10%] flex justify-between items-center mb-6">
                 <h2 class="text-4xl font-semibold">Libros</h2>
-                <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700"><a th:href="@{/libros/administrar}">Agregar Libro</a></button>
+                <div>
+                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700"><a href="">Editar Libro</a>
+                    </button>
+                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700"><a th:href="@{/libros/agregar}">Agregar Libro</a>
+                    </button>
+                </div>                
             </div>
 
             <div class="w-full h-[90%] py-4 pr-0 pl-4 flex flex-wrap gap-[5%] overflow-y-auto">
-                <div class="w-[20%] h-[80%] flex flex-col justify-center bg-gray-200 hover:bg-gray-300 hover:scale-105 transition-all duration-300" th:each="item : ${listalibros}">
+                <div class="w-[20%] h-[80%] flex flex-col justify-center bg-gray-200 hover:bg-gray-300 hover:scale-105 transition-all duration-300" th:each="item : ${listalibros}" onclick="abrirModal()">
                     <div class="w-[100%] h-[80%] flex justify-center items-center">
                         <img class="h-[90%]" th:src="${item.img}" alt="Libro">
                     </div>  
@@ -43,7 +48,18 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal -->
+            <div id="miModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                <div class="bg-white p-6 rounded shadow-lg w-1/2">
+                    <h2 class="text-xl font-bold mb-4">Detalle del producto</h2>
+                    <p>Contenido del modal aquí...</p>
+                    <button onclick="cerrarModal()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Cerrar</button>
+                </div>
+            </div>
         </main>
     </div>
+
+    <script th:src="@{/appLibros.js}"></script>
 </body>
 </html>
