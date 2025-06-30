@@ -1,7 +1,5 @@
 package com.example.demo.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,7 +37,6 @@ public class Usuario {
     @Column(name = "tipoUsuario", nullable = false, length = 45)
     private String tipoUsuario;
     
-    @JsonIgnore
     @Column(name = "passUsuario", nullable = false, length = 45)
     private String passUsuario;
     
@@ -144,6 +141,7 @@ public class Usuario {
                 ", dirUsuario='" + dirUsuario + '\'' +
                 ", telUsuario='" + telUsuario + '\'' +
                 ", tipoUsuario='" + tipoUsuario + '\'' +
+                ", passUsuario='" + passUsuario + '\'' +
                 '}';
     }
 }

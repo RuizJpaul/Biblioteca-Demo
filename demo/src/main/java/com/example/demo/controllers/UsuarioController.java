@@ -13,6 +13,7 @@ import com.example.demo.models.entity.Usuario;
 import com.example.demo.models.service.IUsuarioService;
 
 
+
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -25,7 +26,14 @@ public class UsuarioController {
     public String inicio(Model model) {
         model.addAttribute("usuario", new Usuario());
         model.addAttribute("listaUsuarios", usuarioService.cargarUsuarios());
-        return "usuario/inicio"; // Asegúrate de tener inicio.html en /templates/usuario/
+        return "Usuarios/index"; // Asegúrate de tener inicio.html en /templates/usuario/
+    }
+
+    //Mostrar formularioUsuarios.html
+    @GetMapping("/agregar")
+    public String mostrarFormulario(Model model) {
+        model.addAttribute("usuario",new Usuario());
+        return "Usuarios/formularioUsuarios";
     }
 
     // Guardar usuario y volver a la vista principal (redirige a index.html)
@@ -33,14 +41,7 @@ public class UsuarioController {
     public String guardar(Usuario usuario, RedirectAttributes flash) {
         String rpta = usuarioService.guardarUsuario(usuario);
         flash.addFlashAttribute("rpta", rpta);
-        return "redirect:/usuario/index"; // Redirige al principal con tabla actualizada
-    }
-
-    // Mostrar la página principal con tabla de usuarios
-    @GetMapping("/index")
-    public String index(Model model) {
-        model.addAttribute("usuarios", usuarioService.cargarUsuarios());
-        return "Principal/index"; // Asegúrate que index.html esté en /templates/
+        return "redirect:/usuario/"; // Redirige al principal con tabla actualizada
     }
 
     // Editar un usuario (carga formulario con valores)
@@ -49,7 +50,7 @@ public class UsuarioController {
         Usuario usuario = usuarioService.buscarUsuario(id);
         model.addAttribute("usuario", usuario);
         model.addAttribute("listaUsuarios", usuarioService.cargarUsuarios());
-        return "usuario/inicio"; // Reutiliza el formulario de inicio.html
+        return "Usuarios/editarUsuarios"; // Reutiliza el formulario de inicio.html
     }
 
     // Eliminar un usuario y recargar tabla
@@ -57,6 +58,6 @@ public class UsuarioController {
     public String eliminar(@PathVariable Long id, RedirectAttributes flash) {
         String rpta = usuarioService.eliminarUsuario(id);
         flash.addFlashAttribute("rpta", rpta);
-        return "redirect:/usuario/index"; // Redirige a la tabla actualizada
+        return "redirect:/usuario/"; // Redirige a la tabla actualizada
     }
 }
