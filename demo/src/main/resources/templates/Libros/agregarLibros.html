@@ -16,17 +16,17 @@
     <div class="w-[100%] h-[90vh] flex">
 
         <!-- Sidebar -->
-        <aside class="w-64 bg-white p-4 shadow w-[20%] h-[100%]">
+        <aside class="w-64 bg-white p-4 shadow w-[16%] h-[100%]">
             <nav class="space-y-4">
                 <a th:href="@{/principal/}" class="block hover:text-blue-600 hover:font-semibold">Inicio</a>
                 <a th:href="@{/libros/}" class="block hover:text-blue-600 hover:font-semibold">Libros</a>
                 <a th:href="@{/usuario/}" class="block hover:text-blue-600 hover:font-semibold">Usuarios</a>
-                <a href="#" class="block hover:text-blue-600 hover:font-semibold">Préstamos</a>
+                <a th:href="@{/prestamo/}" class="block hover:text-blue-600 hover:font-semibold">Préstamos</a>
             </nav>
         </aside>
 
         <!-- Contenido principal -->
-        <main class="p-6 w-[100%] h-[100%]">
+        <main class="p-6 w-[84%] h-[100%]">
             <div class="w-full h-[100%] py-2 pr-0 pl-4 overflow-y-auto">
                 <div class="max-w-4xl h-[100%] mx-auto bg-white p-6 rounded-2xl shadow-lg"> 
                     <form th:action="@{/libros/formulario}" th:object="${libro}" method="post" novalidate class="grid grid-cols-1 md:grid-cols-2 gap-4">

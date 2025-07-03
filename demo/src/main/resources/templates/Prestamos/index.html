@@ -11,13 +11,13 @@
 
     <!-- Header -->
     <header class="w-full h-[10vh] bg-yellow-400 text-white p-4 shadow">
-        <h1 class="text-2xl font-bold">Panel de Biblioteca  |   Usuarios</h1>
+        <h1 class="text-2xl font-bold">Panel de Biblioteca  |   Prestamos</h1>
     </header>
 
     <div class="w-[100%] h-[90vh] flex">
 
         <!-- Sidebar -->
-        <aside class="w-64 bg-white p-4 shadow w-[16%] h-[100%]">
+        <aside class="w-64 bg-white p-4 shadow w-[20%] h-[100%]">
             <nav class="space-y-4">
                 <a th:href="@{/principal/}" class="block hover:text-blue-600">Inicio</a>
                 <a th:href="@{/libros/}" class="block hover:text-blue-600">Libros</a>
@@ -27,7 +27,7 @@
         </aside>
 
         <!-- Contenido principal -->
-        <main class="flex-col p-6 w-[84%] h-[100%] overflow-y-auto">
+        <main class="flex-col p-6 w-full overflow-y-auto">
 
             <!-- Mensaje Flash -->
             <div th:if="${rpta}" class="mb-4">
@@ -40,8 +40,8 @@
             <!-- Tabla de Usuarios -->
             <div class="mb-8">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-semibold">Listado de Usuarios</h2>
-                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700"><a th:href="@{/usuario/agregar}">Agregar Usuario</a></button>
+                    <h2 class="text-xl font-semibold">Listado de Prestamos</h2>
+                    <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700"><a th:href="@{/prestamo/agregar}">Agregar</a></button>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -49,32 +49,29 @@
                         <thead>
                             <tr class="bg-gray-200 text-gray-700">
                                 <th class="py-3 px-4 text-left">ID</th>
-                                <th class="py-3 px-4 text-left">Nombre</th>
-                                <th class="py-3 px-4 text-left">Apellido</th>
-                                <th class="py-3 px-4 text-left">Email</th>
-                                <th class="py-3 px-4 text-left">Usuario</th>
-                                <th class="py-3 px-4 text-left">Teléfono</th>
-                                <th class="py-3 px-4 text-left">Tipo</th>
+                                <th class="py-3 px-4 text-left">F.Prestamo</th>
+                                <th class="py-3 px-4 text-left">F.Retorno</th>
+                                <th class="py-3 px-4 text-left">F.Devolucion</th>
+                                <th class="py-3 px-4 text-left">Id_Usuario</th>
+                                <th class="py-3 px-4 text-left">Id_Libro</th>
+                                <th class="py-3 px-4 text-left">Estado</th>
+                                <th class="py-3 px-4 text-left">Observación</th>
                                 <th class="py-3 px-4 text-left">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-t" th:each="item : ${listaUsuarios}">
-                                <td class="py-3 px-4" th:text="${item.idUsuario}"></td>
-                                <td class="py-3 px-4" th:text="${item.nomUsuario}"></td>
-                                <td class="py-3 px-4" th:text="${item.apeUsuario}"></td>
-                                <td class="py-3 px-4" th:text="${item.emailUsuario}"></td>
-                                <td class="py-3 px-4" th:text="${item.userUsuario}"></td>
-                                <td class="py-3 px-4" th:text="${item.telUsuario}"></td>
-                                <td class="py-3 px-4">
-                                    <span class="bg-blue-200 text-blue-800 px-2 py-1 rounded"
-                                          th:text="${item.tipoUsuario}"></span>
-                                </td>
+                            <tr class="border-t" th:each="prestamo : ${listaPrestamos}">
+                                <td class="py-3 px-4" th:text="${prestamo.id}"></td>
+                                <td class="py-3 px-4" th:text="${#temporals.format(prestamo.fechaPrestamo, 'dd/MM/YYYY hh:mm a')}"></td>
+                                <td class="py-3 px-4" th:text="${#temporals.format(prestamo.fechaRetorno, 'dd/MM/YYYY')}"></td>
+                                <td class="py-3 px-4" th:text="${#temporals.format(prestamo.fechaDevolucion, 'dd/MM/YYYY')}"></td>
+                                <td class="py-3 px-4" th:text="${prestamo.idUser}"></td>
+                                <td class="py-3 px-4" th:text="${prestamo.idLib}"></td>
+                                <td class="py-3 px-4" th:text="${prestamo.estado}"></td>
+                                <td class="py-3 px-4" th:text="${prestamo.observacion}"></td>
                                 <td class="py-3 px-4 space-x-2">
-                                    <a th:href="@{/usuario/editar/{id}(id=${item.idUsuario})}" class="bg-blue-700 text-white px-2 py-1 rounded">Editar</a>
-                                    <a th:href="@{/usuario/eliminar/{id}(id=${item.idUsuario})}"
-                                       onclick="return confirm('¿Desea eliminar el usuario?')"
-                                       class="bg-red-700 text-white px-2 py-1 rounded">Eliminar</a>
+                                    <a th:href="@{/prestamo/editar/{id}(id=${prestamo.id})}" class="bg-blue-700 text-white px-2 py-1 rounded">Editar</a>
+                                    <a th:href="@{/prestamo/eliminar/{id}(id=${prestamo.id})}" onclick="return confirm('¿Desea eliminar prestamo?')" class="bg-red-700 text-white px-2 py-1 rounded">Eliminar</a>
                                 </td>
                             </tr>
                         </tbody>

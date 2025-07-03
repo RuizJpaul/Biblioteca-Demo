@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca UPN</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-100">
 
@@ -16,29 +17,46 @@
     <div class="w-[100%] h-[90vh] flex">
 
         <!-- Sidebar -->
-        <aside class="w-64 bg-white p-4 shadow w-[20%] h-[100%]">
+        <aside class="w-64 bg-white p-4 shadow w-[16%] h-[100%]">
             <nav class="space-y-4">
                 <a th:href="@{/principal/}" class="block hover:text-blue-600 hover:font-semibold">Inicio</a>
                 <a th:href="@{/libros/}" class="block hover:text-blue-600 hover:font-semibold">Libros</a>
                 <a th:href="@{/usuario/}" class="block hover:text-blue-600 hover:font-semibold">Usuarios</a>
-                <a href="#" class="block hover:text-blue-600 hover:font-semibold">Préstamos</a>
+                <a th:href="@{/prestamo/}" class="block hover:text-blue-600 hover:font-semibold">Préstamos</a>
             </nav>
         </aside>
 
         <!-- Contenido principal -->
-        <main class="flex-col p-6 w-[100%]">
-            <div class="w-[100%] h-[40%] flex justify-center">
-                <div class="w-[80%] h-[100%] flex justify-center">
+        <main class="flex-col p-6 w-[84%] h-[100%]">
+            <div class="w-[100%] h-[100%] flex flex-col overflow-x-auto">
+                <div class="w-[100%] h-[45%] flex justify-center border border-black">
                     <img src="https://d5tnfl9agh5vb.cloudfront.net/uploads/2013/08/upnorte_nuevo_logo.jpg" class="h-[100%]" alt="">
                 </div>
-            </div>
-            <div class="w-[100%] h-[10%] mb-6">
-                <h2 class="text-4xl font-semibold">Dashboard</h2>
-            </div>
-
-            <div class="overflow-x-auto">
+                <div class="w-[100%] h-auto flex flex-wrap gap-4 py-4 border border-black">
+                    <div class="w-[90%] p-4 flex m-auto border border-black">
+                        <div class="w-[30%] rounded-tl-3xl rounded-bl-3xl flex flex-col justify-center items-center border border-red-700">
+                            <h3 class="text-3xl">Libros</h3>
+                            <p class="text-2xl">250</p>
+                        </div>
+                        <div class="w-[70%] border border-red-700">
+                            <canvas id="barrasHorizontales" class="w-[100%]"></canvas>
+                        </div>
+                    </div>
+                    <div class="w-[40%] p-4 m-auto border border-black">
+                        <canvas id="torta" class="w-[100%]"></canvas>
+                    </div>
+                    <div class="w-[40%] p-4 m-auto border border-black">
+                        
+                    </div>
+                    <div class="w-[40%] p-4 m-auto border border-black">
+                        
+                    </div>
+                </div>
+                
             </div>
         </main>
     </div>
+
+    <script th:src="@{/appPrincipal.js}"></script>
 </body>
 </html>
