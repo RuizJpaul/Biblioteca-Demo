@@ -3,6 +3,7 @@ package com.example.demo.models.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.entity.Usuario;
@@ -14,14 +15,26 @@ public class UsuarioService implements IUsuarioService {
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder; // 🆕 Inyección del codificador
+
     @Override
     public String guardarUsuario(Usuario usuario) {
         String rpta;
+
+        // 🛡️ Codifica siempre la contraseña antes de guardar o actualizar
+        String passwordPlano = usuario.getPassUsuario();
+        if (passwordPlano != null && !passwordPlano.startsWith("$2a$") && !passwordPlano.startsWith("$2b$") && !passwordPlano.startsWith("$2y$")) {
+            // Solo codifica si no está ya codificada
+            usuario.setPassUsuario(passwordEncoder.encode(passwordPlano));
+        }
+
         if (usuario.getIdUsuario() == null) {
             rpta = "Se registró el usuario correctamente";
         } else {
             rpta = "Se actualizó el usuario";
         }
+
         usuarioRepository.saveAndFlush(usuario);
         return rpta;
     }

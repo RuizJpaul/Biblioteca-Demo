@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- ¡Asegúrate de incluir xmlns:th! -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <form method="post" th:action="@{/login}">
+    <input type="text" name="username" placeholder="Correo" required>
+    <input type="password" name="password" placeholder="Contraseña" required>
+    
+    <!-- Campo CSRF (¡OBLIGATORIO!) -->
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+    
+    <button type="submit">Iniciar sesión</button>
+  </form>
+</body>
+</html>
