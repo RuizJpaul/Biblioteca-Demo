@@ -42,5 +42,14 @@ public class LibroService implements ILibroService{
         libroRepository.deleteById(id);
         return "Se elimino la carrera";
     }
+
+    public long contarLibros() {
+        return libroRepository.count();
+    }
+
+    @Override
+    public List<Object[]> contarLibrosPorGenero() {
+        return libroRepository.contarLibrosPorGenero();
+    }
     
 }

@@ -9,4 +9,5 @@ public interface ILibroService {
     public List<Libro> cargarLibros();
     public Libro busLibro(Long id);
     public String eliminarLibro(Long id);
+    public List<Object[]> contarLibrosPorGenero();
 }

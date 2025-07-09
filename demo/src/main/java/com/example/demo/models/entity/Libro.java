@@ -17,8 +17,8 @@ public class Libro implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idLibro")
     private Long id;
-    @Column(name="isbnLibro")
-    private String isbn;
+    @Column(name="genLibro")
+    private String gen;
     @Column(name="tituloLibro")
     private String titulo;
     @Column(name="anioLibro")
@@ -39,11 +39,11 @@ public class Libro implements Serializable{
     public void setId(Long id){
         this.id = id;
     }
-    public String getIsbn(){
-        return isbn;
+    public String getGen(){
+        return gen;
     }
-    public void setIsbn(String isbn){
-        this.isbn = isbn;
+    public void setGen(String gen){
+        this.gen = gen;
     }
     public String getTitulo(){
         return titulo;

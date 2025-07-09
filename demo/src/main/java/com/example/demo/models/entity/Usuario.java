@@ -16,46 +16,31 @@ public class Usuario {
     @Column(name = "idUsuario")
     private Long idUsuario;
     
-    @Column(name = "nomUsuario", nullable = false, length = 45)
+    @Column(name = "nomUsuario")
     private String nomUsuario;
     
-    @Column(name = "apeUsuario", nullable = false, length = 45)
+    @Column(name = "apeUsuario")
     private String apeUsuario;
     
-    @Column(name = "emailUsuario", nullable = false, length = 45)
+    @Column(name = "emailUsuario")
     private String emailUsuario;
     
-    @Column(name = "userUsuario", nullable = false, length = 45)
+    @Column(name = "userUsuario")
     private String userUsuario;
     
-    @Column(name = "dirUsuario", nullable = false, length = 45)
+    @Column(name = "dirUsuario")
     private String dirUsuario;
     
-    @Column(name = "telUsuario", nullable = false, length = 45)
+    @Column(name = "telUsuario")
     private String telUsuario;
     
-    @Column(name = "tipoUsuario", nullable = false, length = 45)
+    @Column(name = "tipoUsuario")
     private String tipoUsuario;
     
-    @Column(name = "passUsuario", nullable = false, length = 45)
+    @Column(name = "passUsuario")
     private String passUsuario;
     
-    // Constructor vacío
-    public Usuario() {}
-    
-    // Constructor con parámetros
-    public Usuario(String nomUsuario, String apeUsuario, String emailUsuario, 
-                   String userUsuario, String dirUsuario, String telUsuario, 
-                   String tipoUsuario, String passUsuario) {
-        this.nomUsuario = nomUsuario;
-        this.apeUsuario = apeUsuario;
-        this.emailUsuario = emailUsuario;
-        this.userUsuario = userUsuario;
-        this.dirUsuario = dirUsuario;
-        this.telUsuario = telUsuario;
-        this.tipoUsuario = tipoUsuario;
-        this.passUsuario = passUsuario;
-    }
+
     
     // Getters y Setters
     public Long getIdUsuario() {
@@ -128,20 +113,5 @@ public class Usuario {
     
     public void setPassUsuario(String passUsuario) {
         this.passUsuario = passUsuario;
-    }
-    
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "idUsuario=" + idUsuario +
-                ", nomUsuario='" + nomUsuario + '\'' +
-                ", apeUsuario='" + apeUsuario + '\'' +
-                ", emailUsuario='" + emailUsuario + '\'' +
-                ", userUsuario='" + userUsuario + '\'' +
-                ", dirUsuario='" + dirUsuario + '\'' +
-                ", telUsuario='" + telUsuario + '\'' +
-                ", tipoUsuario='" + tipoUsuario + '\'' +
-                ", passUsuario='" + passUsuario + '\'' +
-                '}';
     }
 }
