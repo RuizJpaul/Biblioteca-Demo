@@ -70,7 +70,11 @@
                                 <td class="py-3 px-4" th:text="${prestamo.estado}"></td>
                                 <td class="py-3 px-4" th:text="${prestamo.observacion}"></td>
                                 <td class="py-3 px-4 space-x-2">
+
+                                    
                                     <a th:href="@{/prestamo/editar/{id}(id=${prestamo.id})}" class="bg-blue-700 text-white px-2 py-1 rounded">Editar</a>
+                                    
+
                                     <a th:href="@{/prestamo/eliminar/{id}(id=${prestamo.id})}" onclick="return confirm('¿Desea eliminar prestamo?')" class="bg-red-700 text-white px-2 py-1 rounded">Eliminar</a>
                                 </td>
                             </tr>

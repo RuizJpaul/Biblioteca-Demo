@@ -37,7 +37,9 @@ public class Prestamo {
     
     @PrePersist //Asignar por defecto *presistirlo
     public void asignarFechaPrestamo(){
-        fechaPrestamo = LocalDateTime.now();
+        if (this.fechaPrestamo == null) {
+            this.fechaPrestamo = LocalDateTime.now(); 
+        }
     }
     
     public Prestamo() {}

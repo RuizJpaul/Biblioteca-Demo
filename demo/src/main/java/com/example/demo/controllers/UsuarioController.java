@@ -50,7 +50,7 @@ public class UsuarioController {
         Usuario usuario = usuarioService.buscarUsuario(id);
         model.addAttribute("usuario", usuario);
         model.addAttribute("listaUsuarios", usuarioService.cargarUsuarios());
-        return "Usuarios/editarUsuarios"; // Reutiliza el formulario de inicio.html
+        return "Usuarios/editarUsuarios";
     }
 
     // Eliminar un usuario y recargar tabla

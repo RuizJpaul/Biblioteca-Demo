@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +9,14 @@
 <body class="bg-gray-100">
 
     <!-- Header -->
-    <header class="w-[100%] h-[10vh] bg-yellow-400 text-white p-4 shadow">
-        <h1 class="text-2xl font-bold">Panel de Biblioteca  |   Agregar Prestamo</h1>
+    <header class="w-full h-[10vh] bg-yellow-400 text-white p-4 shadow">
+        <h1 class="text-2xl font-bold">Panel de Biblioteca  | Agregar Préstamo</h1>
     </header>
 
-    <div class="w-[100%] h-[90vh] flex">
+    <div class="w-full h-[90vh] flex">
 
         <!-- Sidebar -->
-        <aside class="w-64 bg-white p-4 shadow w-[20%] h-[100%]">
+        <aside class="w-64 bg-white p-4 shadow h-full">
             <nav class="space-y-4">
                 <a th:href="@{/principal/}" class="block hover:text-blue-600">Inicio</a>
                 <a th:href="@{/libros/}" class="block hover:text-blue-600">Libros</a>
@@ -26,9 +26,9 @@
         </aside>
 
         <!-- Formulario principal -->
-        <main class="flex-col p-6 w-[100%] h-[100%]">
+        <main class="flex-col p-6 w-full h-full">
             <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
-                <h2 class="text-xl font-semibold text-center mb-6">Formulario de Prestamo</h2>
+                <h2 class="text-xl font-semibold text-center mb-6">Formulario de Préstamo</h2>
 
                 <!-- Mensaje flash -->
                 <div th:if="${rpta}" class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
@@ -41,32 +41,59 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block font-medium">Fecha Retorno</label>
-                            <input th:field="*{fechaRetorno}" type="date" class="w-full border p-2 rounded" required>
+                            <input type="date" name="fechaRetorno"
+                                th:value="${prestamo.fechaRetorno != null ? #temporals.format(prestamo.fechaRetorno, 'yyyy-MM-dd') : ''}"
+                                class="w-full border p-2 rounded" required>
                         </div>
                         <div>
-                            <label class="block font-medium">Fecha Devolucion</label>
-                            <input th:field="*{fechaDevolucion}" type="date" class="w-full border p-2 rounded" required>
+                            <label class="block font-medium">Fecha Devolución</label>
+                            <input type="date" name="fechaDevolucion"
+                                th:value="${prestamo.fechaDevolucion != null ? #temporals.format(prestamo.fechaDevolucion, 'yyyy-MM-dd') : ''}"
+                                class="w-full border p-2 rounded" required>
                         </div>
                         <div>
-                            <label class="block font-medium">Id_Usuario</label>
-                            <input th:field="*{idUser}" type="number" class="w-full border p-2 rounded" required>
+                            <label class="block font-medium">Usuario</label>
+                            <select th:field="*{idUser}" class="w-full border p-2 rounded" required>
+                                <option value="" disabled selected>-- Seleccione un usuario --</option>
+                                <option th:each="usuario : ${usuarios}" 
+                                        th:value="${usuario.idUsuario}" 
+                                        th:text="${usuario.idUsuario + ' | ' + usuario.nomUsuario + ' ' + usuario.apeUsuario}">
+                                </option>
+                            </select>
                         </div>
                         <div>
-                            <label class="block font-medium">Id_Libro</label>
-                            <input th:field="*{idLib}" type="number" class="w-full border p-2 rounded" required>
+                            <label class="block font-medium">Libro</label>
+                            <select th:field="*{idLib}" class="w-full border p-2 rounded" required>
+                                <option value="" disabled selected>-- Seleccione un libro --</option>
+                                <option th:each="libro : ${libros}" 
+                                        th:value="${libro.id}" 
+                                        th:text="${libro.id + ' | ' + libro.titulo}">
+                                </option>
+                            </select>
                         </div>
                         <div>
                             <label class="block font-medium">Estado</label>
-                            <input th:field="*{estado}" type="text" class="w-full border p-2 rounded" required>
+                            <select th:field="*{estado}" class="w-full border p-2 rounded" required>
+                                <option value="" disabled selected>Selecciona estado</option>
+                                <option value="Prestado">Prestado</option>
+                                <option value="Devuelto">Devuelto</option>
+                                <option value="Retrasado">Retrasado</option>
+                                <option value="Cancelado">Cancelado</option>
+                                <option value="Perdido">Perdido</option>
+                                <option value="En revisión">En revisión</option>
+                            </select>
                         </div>
                         <div>
                             <label class="block font-medium">Observación</label>
                             <textarea rows="4" th:field="*{observacion}" class="w-full border p-2 rounded"></textarea>
                         </div>
                     </div>
+
                     <div class="text-center mt-6">
-                        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                        <a th:href="@{/prestamo/}" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Cancelar</a>
+                        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar
+                        </button>
+                        <a th:href="@{/prestamo/}" class="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600 ml-2">Cancelar</a>
                     </div>
                 </form>
             </div>

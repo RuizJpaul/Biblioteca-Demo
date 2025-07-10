@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.entity.Libro;
+import com.example.demo.models.entity.Prestamo;
 import com.example.demo.models.repository.ILibroRepository;
+import com.example.demo.models.repository.IPrestamoRepository;
 
 @Service
 public class LibroService implements ILibroService{
 
     @Autowired
     private ILibroRepository libroRepository;
+
+    @Autowired
+    private IPrestamoRepository prestamoRepository;
 
     @Override
     public String guardarLibro(Libro libro){
@@ -38,9 +43,15 @@ public class LibroService implements ILibroService{
     }
 
     @Override
-    public String eliminarLibro(Long id){
-        libroRepository.deleteById(id);
-        return "Se elimino la carrera";
+    public String eliminarLibro(Long idLibro) {
+        List<Prestamo> prestamos = prestamoRepository.findByIdLib(idLibro);
+        
+        if (!prestamos.isEmpty()) {
+            return "No se puede eliminar el libro porque tiene préstamos asociados.";
+        }
+
+        libroRepository.deleteById(idLibro);
+        return "Libro eliminado correctamente.";
     }
 
     public long contarLibros() {
