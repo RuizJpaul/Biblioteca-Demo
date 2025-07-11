@@ -41,7 +41,7 @@ public class LibroService implements ILibroService{
     public Libro busLibro(Long id){
         return libroRepository.findById(id).get();
     }
-
+    
     @Override
     public String eliminarLibro(Long idLibro) {
         List<Prestamo> prestamos = prestamoRepository.findByIdLib(idLibro);

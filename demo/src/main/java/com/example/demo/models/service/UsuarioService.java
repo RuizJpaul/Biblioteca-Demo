@@ -16,16 +16,14 @@ public class UsuarioService implements IUsuarioService {
     private IUsuarioRepository usuarioRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // 🆕 Inyección del codificador
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public String guardarUsuario(Usuario usuario) {
         String rpta;
 
-        // 🛡️ Codifica siempre la contraseña antes de guardar o actualizar
         String passwordPlano = usuario.getPassUsuario();
         if (passwordPlano != null && !passwordPlano.startsWith("$2a$") && !passwordPlano.startsWith("$2b$") && !passwordPlano.startsWith("$2y$")) {
-            // Solo codifica si no está ya codificada
             usuario.setPassUsuario(passwordEncoder.encode(passwordPlano));
         }
 

@@ -1,50 +1,57 @@
+fetch('/libros/genero')
+  .then(res => res.json())
+  .then(data => {
+    const labels = Object.keys(data);
+    const values = Object.values(data);
+    const maxValue = Math.max(...values);
 
-fetch('/libros/genero') // URL del endpoint
-.then(res => res.json())
-.then(data => {
-    const labels = Object.keys(data);     // Ej: ['Historia', 'Derecho', ...]
-    const values = Object.values(data);   // Ej: [5, 9, 4, 7, 3]
+    // Escalamos el ancho dinámicamente según la cantidad máxima de libros
+    const minCanvasWidth = Math.max(500, maxValue * 50); // 50px por libro (ajustable)
+    const canvasContainer = document.getElementById('barrasHorizontales').parentElement;
 
+    // Aseguramos que el contenedor tenga al menos ese ancho
+    canvasContainer.style.minWidth = `${minCanvasWidth}px`;
+
+    // Creamos el gráfico como antes
     const ctx = document.getElementById('barrasHorizontales').getContext('2d');
     new Chart(ctx, {
-    type: 'bar',
-    data: {
+      type: 'bar',
+      data: {
         labels: labels,
         datasets: [{
-        label: 'Cantidad de libros por género',
-        data: values,
-        backgroundColor: 'rgb(161, 161, 161)',
-        // borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
+          label: 'Cantidad de libros por género',
+          data: values,
+          backgroundColor: 'rgb(161, 161, 161)',
+          borderWidth: 1
         }]
-    },
-    options: {
+      },
+      options: {
         indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
-        y: {
-            ticks: {
-            color: 'rgb(161, 161, 161)', // ← aquí cambias el color del texto del eje Y (etiquetas)
-            font: {
-                // size: 14,
-                // weight: 'bold'
-            }
-            }
-        },
-        x: { 
+          x: {
             beginAtZero: true,
+            max: maxValue < 15 ? 15 : maxValue + 2, // límite dinámico
             ticks: {
-            color: 'rgb(161, 161, 161)', // ← aquí cambias el color del texto del eje Y (etiquetas)
-            font: {
-                // size: 14,
-                // weight: 'bold'
+              stepSize: 1,
+              color: 'rgb(161, 161, 161)'
             }
+          },
+          y: {
+            ticks: {
+              color: 'rgb(161, 161, 161)'
             }
-        }
+          }
         },
         plugins: {
-        legend: { display: false },
-        title: { display: true, text: 'Libros por género', color: 'rgb(161, 161, 161)' }
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Libros por género',
+            color: 'rgb(161, 161, 161)'
+          }
         }
-    }
+      }
     });
-});
+  });
